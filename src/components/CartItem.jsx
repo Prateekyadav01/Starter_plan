@@ -1,32 +1,43 @@
-import { useState } from "react";
-import { MdDelete } from "react-icons/md";
+
+import {FcDeleteDatabase} from "react-icons/fc"
 import { useDispatch } from "react-redux";
 import { remove } from "../redux/Slices/CartSlice";
-const CartItem = ({item}) => {
-  const [total , setTotal] = useState(0);
+import { toast } from "react-hot-toast";
+
+const CartItem = ({item, itemIndex}) => {
   const dispatch = useDispatch();
-  const handleRemove =()=>{
+
+  const removeFromCart = () => {
     dispatch(remove(item.id));
+    toast.success("Item Removed");
   }
-  return <div>
+
+  return (
     <div>
+
+      <div>
+
         <div>
-          <img className="w-[200px] h-10" src={item.image} alt="no image" />
+          <img src={item.image} />
         </div>
         <div>
-          <h3>{item.title}</h3>
-          <p>{item.description}</p>
+          <h1>{item.title}</h1>
+          <h1>{item.description}</h1>
           <div>
-            <p>Price: ${item.price}</p>
-            <div onClick={handleRemove}>
-            <MdDelete />
+            <p>{item.price}</p>
+            <div
+            onClick={removeFromCart}>
+              <FcDeleteDatabase/>
             </div>
           </div>
+
         </div>
+
+
+      </div>
+
     </div>
-    <hr />
-    
-  </div>;
+  );
 };
 
 export default CartItem;
