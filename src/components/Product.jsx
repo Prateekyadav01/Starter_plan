@@ -18,6 +18,7 @@ const Product = ({data}) => {
   const handleRemove =()=>{
       dispatch(remove(data.id));
       toast.error("Product removed successfully");
+      console.log(cart)
   }
   return (
     <div className="flex flex-wrap border-2 border-gray-500 justify-center items-center w-full">
